@@ -1,0 +1,45 @@
+/
+├── index.html
+├── assets/
+│   ├── css/
+│   │   └── output.css
+│   ├── js/
+│   │   ├── hero.js
+│   │   └── parallax.js
+│   ├── fonts/
+│   │   ├── MavFieldGothicNarrowDemiDemiXXXCond.ttf
+│   │   ├── MavFieldGothicStandardXXBoldXXBoldCompact.ttf
+│   │   └── Inter-Variable.woff2
+│   ├── videos/
+│   │   └── hero-video.mp4
+│   └── images/
+│       ├── hero-bg.jpg
+│       ├── sponsor-day-mask.png 
+│       ├── logo-top.png
+│       ├── btn-trailer.png
+│       ├── btn-wishlist.png
+│       ├── icon-ps5.png
+│       ├── icon-xbox.png
+│       ├── icon-steam.png
+│       ├── icon-epic.png
+│       ├── icon-ig.png
+│       ├── icon-yt.png
+│       ├── icon-tk.png
+│       ├── icon-x.png
+│       ├── icon-fb.png
+│       ├── badge-letter.png
+│       ├── box-made-in.png
+│       ├── bottom-bar.png
+│       ├── about-bg.jpg
+│       ├── underline-about.png
+│       ├── polaroid-1.jpg
+│       ├── polaroid-2.jpg
+│       ├── polaroid-3.jpg
+│       ├── polaroid-4.jpg
+│       ├── polaroid-5.jpg
+│       ├── polaroid-6.jpg
+│       ├── polaroid-7.jpg
+│       ├── logo-submark.png
+│       ├── footer-bg.jpg
+│       ├── footer-box.png
+│       └── logo-footer.png
