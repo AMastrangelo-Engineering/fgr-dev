@@ -9,14 +9,153 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/output.css">
     
-    <!-- Favicon (Opcional, podés agregar el tuyo en la carpeta images) -->
+    <!-- Favicon -->
     <link rel="icon" href="./assets/images/logo-submark.png" sizes="32x32"/>
+
+    <!-- ESTILOS PERSONALIZADOS PARA LAS NUEVAS SECCIONES Y ADAPTABILIDAD -->
+    <style>
+        /* Corrección para que el título baje a 2 renglones en smartphones */
+        .monaco-about__title {
+            white-space: normal !important;
+            word-wrap: break-word;
+        }
+
+        /* Estilos para Sección: Cómo Funciona */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 3.5rem;
+        }
+        .step-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border: 2px solid var(--color-monaco-dark);
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        .step-number {
+            font-family: "Mav Field Gothic Compact", var(--font-display);
+            font-size: 3.5rem;
+            line-height: 1;
+            color: var(--color-monaco-dark);
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+        .step-title {
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            color: var(--color-monaco-dark);
+        }
+
+        /* Estilos para Circuitos y Cronograma */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        @media (min-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .circuitos-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .circuitos-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        .circuitos-list li::before {
+            content: "📍";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .cronograma-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+        .cronograma-time {
+            font-family: "Mav Field Gothic Compact", var(--font-display);
+            font-size: 1.8rem;
+            color: var(--color-monaco-dark);
+            min-width: 75px;
+            border-bottom: 3px solid var(--color-monaco-dark);
+            line-height: 1.2;
+        }
+        .cronograma-desc h4 {
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0 0 0.25rem 0;
+            font-size: 1.05rem;
+        }
+        .cronograma-desc p {
+            margin: 0;
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        /* Estilos para FAQ / Preguntas Frecuentes */
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 2.5rem;
+        }
+        .faq-item {
+            border-bottom: 2px solid rgba(33, 15, 0, 0.2);
+        }
+        .faq-item summary {
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 1.25rem 0;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-monaco-dark);
+        }
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-family: monospace;
+            transition: transform 0.2s ease;
+        }
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+        .faq-item p {
+            padding-bottom: 1.25rem;
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body class="home wp-theme-monaco">
 
     <div id="site-wrap">
         <main id="main">
-            <!-- HERO SECTION -->
+            <!-- 1. HERO SECTION -->
             <section class="monaco-hero" aria-label="Sponsor Day" style="background-image: url('./assets/images/hero-bg.jpg')">
                 <span class="monaco-hero__corner monaco-hero__corner--tl" aria-hidden="true"></span>
                 <span class="monaco-hero__corner monaco-hero__corner--tr" aria-hidden="true"></span>
@@ -28,8 +167,7 @@
                             <img src="./assets/images/logo-top.png" alt="Sponsor Day Logo">
                         </div>
                         
-                        <!-- MÁSCARA Y VIDEO -->
-                        <div class="monaco-hero__clutch monaco-hero__clutch--has-video" style="--clutch-mask: url('../images/sponsor-day-mask.png')">
+                        <div class="monaco-hero__clutch monaco-hero__clutch--has-video" style="--clutch-mask: url('./assets/images/sponsor-day-mask.png')">
                             <img class="monaco-hero__clutch-sizer" src="./assets/images/sponsor-day-mask.png" alt="SPONSOR DAY">
                             <video class="monaco-hero__clutch-video" autoplay muted loop playsinline aria-hidden="true">
                                 <source src="./assets/videos/hero-video.mp4" type="video/mp4">
@@ -37,7 +175,6 @@
                             <img class="monaco-hero__clutch-cover" src="./assets/images/sponsor-day-mask.png" alt="" aria-hidden="true">
                         </div>
 
-                        <!-- LINK DEL TRAILER DE YOUTUBE AQUÍ -->
                         <a href="https://youtu.be/TU_VIDEO_AQUI" class="monaco-hero__btn js-trailer-trigger" aria-label="Play Trailer">
                             <img src="./assets/images/btn-trailer.png" alt="Play Trailer">
                         </a>
@@ -47,7 +184,6 @@
                             <img src="./assets/images/btn-wishlist.png" alt="Wishlist Today">
                         </div>
                         
-                        <!-- REDES SOCIALES -->
                         <nav class="monaco-hero__social" aria-label="Social media">
                             <a href="#" class="monaco-hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                                 <img src="./assets/images/icon-ig.png" alt="Instagram">
@@ -107,7 +243,7 @@
                 </div>
             </div>
 
-            <!-- ABOUT SECTION -->
+            <!-- 2. ABOUT SECTION ("ESTO ES EL SPONSOR DAY") -->
             <section class="monaco-about" aria-label="Sobre el Sponsor Day" style="background-image: url('./assets/images/about-bg.jpg')">
                 <span class="monaco-corner monaco-corner--tl" aria-hidden="true"></span>
                 <span class="monaco-corner monaco-corner--tr" aria-hidden="true"></span>
@@ -117,7 +253,8 @@
                     <div class="monaco-about__text">
                         <h2 class="monaco-about__title">
                             <span class="monaco-about__title-light">ESTO ES EL</span><br>
-                            <span class="monaco-about__title-bold">SPONSOR DAY</span>
+                            <!-- La clase sm:hidden rompe la palabra solo en móviles -->
+                            <span class="monaco-about__title-bold">SPONSOR<br class="sm:hidden"> DAY</span>
                         </h2>
                         <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
                         <p class="monaco-about__body-title">VIVÍ EL MISIL</p>
@@ -127,6 +264,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Efecto Parallax Fotos -->
                 <div class="monaco-about__photos">
                     <img class="monaco-about__photo monaco-about__photo--1" src="./assets/images/polaroid-1.jpg" alt="" loading="lazy" data-parallax="0.07">
                     <img class="monaco-about__photo monaco-about__photo--2" src="./assets/images/polaroid-2.jpg" alt="" loading="lazy" data-parallax="0.4">
@@ -137,10 +275,180 @@
                     <img class="monaco-about__photo monaco-about__photo--7" src="./assets/images/polaroid-7.jpg" alt="" loading="lazy" data-parallax="0.07">
                 </div>
                 <img class="monaco-about__submark" src="./assets/images/logo-submark.png" alt="" aria-hidden="true">
-                <img class="monaco-about__bottombar" src="./assets/images/bottom-bar-2.png" alt="" aria-hidden="true">
+                <img class="monaco-about__bottombar" src="./assets/images/bottom-bar.png" alt="" aria-hidden="true">
             </section>
 
-            <!-- FOOTER SECTION -->
+            <!-- 3. SECCIÓN: CÓMO FUNCIONA -->
+            <section class="monaco-about" aria-label="Cómo Funciona" style="background-image: url('./assets/images/hero-bg.jpg')">
+                <span class="monaco-corner monaco-corner--tl" aria-hidden="true"></span>
+                <span class="monaco-corner monaco-corner--tr" aria-hidden="true"></span>
+                <span class="monaco-corner monaco-corner--bl" aria-hidden="true"></span>
+                <span class="monaco-corner monaco-corner--br" aria-hidden="true"></span>
+                
+                <div class="monaco-about__inner" style="max-width: 1100px;">
+                    <div class="monaco-about__text" style="max-width: 100%;">
+                        <h2 class="monaco-about__title">
+                            <span class="monaco-about__title-bold">CÓMO FUNCIONA</span>
+                        </h2>
+                        <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
+                        
+                        <!-- Pasos -->
+                        <div class="steps-grid">
+                            <div class="step-card">
+                                <div class="step-number">01</div>
+                                <div class="step-title">Consultá tu lugar</div>
+                                <div class="monaco-about__body">
+                                    <p>Contactanos por WhatsApp, Instagram o formulario. Te informamos disponibilidad, fechas y próximas ediciones.</p>
+                                </div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">02</div>
+                                <div class="step-title">Confirmá tu reserva</div>
+                                <div class="monaco-about__body">
+                                    <p>Asegurá tu cupo con el pago de una seña. Los lugares son limitados para garantizar una experiencia de primer nivel.</p>
+                                </div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">03</div>
+                                <div class="step-title">Llegá al circuito</div>
+                                <div class="monaco-about__body">
+                                    <p>Presentate en el circuito a las 10 AM. Todo el equipamiento y la logística están resueltos. Vos solo traé las ganas.</p>
+                                </div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">04</div>
+                                <div class="step-title">Viví la experiencia</div>
+                                <div class="monaco-about__body">
+                                    <p>Coaching, vueltas cronometradas, análisis de datos y comida todo el día. Una jornada que no vas a olvidar.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Circuitos y Cronograma -->
+                        <div class="info-grid">
+                            <div>
+                                <p class="monaco-about__body-title" style="font-size: 1.5rem; margin-bottom: 1rem;">CIRCUITOS</p>
+                                <div class="monaco-about__body">
+                                    <ul class="circuitos-list">
+                                        <li>Baradero, Buenos Aires</li>
+                                        <li>Buenos Aires, CABA</li>
+                                        <li>Ciudad Evita, Buenos Aires</li>
+                                        <li>Gualeguay, Entre Ríos</li>
+                                        <li>Zárate, Buenos Aires</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="monaco-about__body-title" style="font-size: 1.5rem; margin-bottom: 1rem;">CRONOGRAMA DEL DÍA</p>
+                                <div class="cronograma-list monaco-about__body">
+                                    <div class="cronograma-item">
+                                        <div class="cronograma-time">10:00</div>
+                                        <div class="cronograma-desc">
+                                            <h4>Llegada al Circuito</h4>
+                                            <p>Bienvenida, equipamiento y registro</p>
+                                        </div>
+                                    </div>
+                                    <div class="cronograma-item">
+                                        <div class="cronograma-time">10:30</div>
+                                        <div class="cronograma-desc">
+                                            <h4>Charla de Orientación</h4>
+                                            <p>Seguridad, técnica y reconocimiento de pista</p>
+                                        </div>
+                                    </div>
+                                    <div class="cronograma-item">
+                                        <div class="cronograma-time">11:00</div>
+                                        <div class="cronograma-desc">
+                                            <h4>🏁 Salida a Pista</h4>
+                                            <p>Vueltas cronometradas con coaching en vivo</p>
+                                        </div>
+                                    </div>
+                                    <div class="cronograma-item">
+                                        <div class="cronograma-time">12:15</div>
+                                        <div class="cronograma-desc">
+                                            <h4>Segunda Sesión</h4>
+                                            <p>Más vueltas, más velocidad, mejor performance</p>
+                                        </div>
+                                    </div>
+                                    <div class="cronograma-item">
+                                        <div class="cronograma-time">13:30</div>
+                                        <div class="cronograma-desc">
+                                            <h4>Análisis y Almuerzo</h4>
+                                            <p>Revisión de telemetría y videos a bordo</p>
+                                        </div>
+                                    </div>
+                                    <div class="cronograma-item">
+                                        <div class="cronograma-time">15:30</div>
+                                        <div class="cronograma-desc">
+                                            <h4>🏆 Qualy — Tiempos y Premios</h4>
+                                            <p>Vueltas cronometradas · Competencia por merchandising oficial</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <img class="monaco-about__bottombar" src="./assets/images/bottom-bar.png" alt="" aria-hidden="true">
+            </section>
+
+            <!-- 4. SECCIÓN: FAQ -->
+            <section class="monaco-about" aria-label="FAQ" style="background-image: url('./assets/images/about-bg.jpg')">
+                <span class="monaco-corner monaco-corner--tl" aria-hidden="true"></span>
+                <span class="monaco-corner monaco-corner--tr" aria-hidden="true"></span>
+                <span class="monaco-corner monaco-corner--bl" aria-hidden="true"></span>
+                <span class="monaco-corner monaco-corner--br" aria-hidden="true"></span>
+                <div class="monaco-about__inner" style="max-width: 800px;">
+                    <div class="monaco-about__text" style="max-width: 100%;">
+                        <h2 class="monaco-about__title">
+                            <span class="monaco-about__title-bold">PREGUNTAS<br class="sm:hidden"> FRECUENTES</span>
+                        </h2>
+                        <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
+                        
+                        <div class="faq-container monaco-about__body">
+                            <details class="faq-item">
+                                <summary>¿Necesito experiencia previa en karting?</summary>
+                                <p>No es necesario. La jornada incluye una charla de orientación y seguridad, reconocimiento de pista y coaching personalizado. Tanto principiantes como pilotos con experiencia pueden disfrutar la experiencia al máximo.</p>
+                            </details>
+                            
+                            <details class="faq-item">
+                                <summary>¿Qué pasa si llueve el día del evento?</summary>
+                                <p>Si el evento no puede realizarse por condiciones climáticas que comprometan la seguridad, se reprograma automáticamente para una nueva fecha. La seña pagada queda válida para la nueva edición.</p>
+                            </details>
+                            
+                            <details class="faq-item">
+                                <summary>¿Cómo se reserva un lugar?</summary>
+                                <p>Escribinos directamente por WhatsApp. Una vez confirmada disponibilidad, tu lugar se reserva con el pago de una seña. El resto se abona el día del evento.</p>
+                            </details>
+                            
+                            <details class="faq-item">
+                                <summary>¿Se puede cancelar la reserva?</summary>
+                                <p>La seña de reserva no es reembolsable en caso de cancelación por parte del participante. Sin embargo, si no podés asistir a una fecha reprogramada por condiciones climáticas, podés solicitar el reintegro dentro de la semana siguiente.</p>
+                            </details>
+
+                            <details class="faq-item">
+                                <summary>¿El evento es solo para adultos?</summary>
+                                <p>El evento está diseñado para mayores de edad o menores con autorización y acompañamiento de un adulto responsable. Consultanos para evaluar cada caso particular.</p>
+                            </details>
+
+                            <details class="faq-item">
+                                <summary>¿Puedo llevar acompañantes que no manejen?</summary>
+                                <p>Sí, pueden asistir acompañantes como espectadores. La experiencia de ver los kartings en acción en un circuito profesional ya es espectacular. Consultanos para coordinar los detalles.</p>
+                            </details>
+
+                            <details class="faq-item">
+                                <summary>El que rompe, paga — ¿cómo funciona?</summary>
+                                <p>Al participar del Sponsor Day, cada piloto asume plena responsabilidad por los daños que cause al karting durante la experiencia. En caso de accidente o mal uso del vehículo que resulte en la rotura del mismo, el participante deberá hacerse cargo del costo de reparación, sin excepción y sin importar las circunstancias del incidente. Esta condición es parte esencial de la experiencia y es aceptada al momento de confirmar la reserva.</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+                <img class="monaco-about__submark" src="./assets/images/logo-submark.png" alt="" aria-hidden="true">
+                <img class="monaco-about__bottombar" src="./assets/images/bottom-bar.png" alt="" aria-hidden="true">
+            </section>
+
+            <!-- 5. FOOTER SECTION -->
             <section class="monaco-footer" aria-label="Contacto" style="background-image: url('./assets/images/footer-bg.jpg')">
                 <span class="monaco-corner monaco-corner--tl" aria-hidden="true"></span>
                 <span class="monaco-corner monaco-corner--tr" aria-hidden="true"></span>
@@ -155,14 +463,13 @@
                         <div class="monaco-footer__signup">
                             <div class="monaco-footer__headgroup">
                                 <h2 class="monaco-footer__heading">CONTACTANOS</h2>
-                                <span class="monaco-footer__underline" style="background-image: url('./assets/images/underline-contact.png')" aria-hidden="true"></span>
+                                <span class="monaco-footer__underline" style="background-image: url('./assets/images/underline-about.png')" aria-hidden="true"></span>
                             </div>
                             <p class="monaco-footer__subtext">
                                 Escribinos para asegurar tu lugar en el próximo <span class="monaco-footer__brandword">SPONSOR DAY</span>
                             </p>
                             
                             <!-- ENLACE A WHATSAPP AQUÍ -->
-                            <!-- Reemplazá el "1234567890" por tu número de teléfono con código de área, sin el "+" ni espacios -->
                             <div class="monaco-footer__field">
                                 <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="monaco-footer__submit" style="display: flex; justify-content: center; align-items: center; width: 100%; text-decoration: none; padding-top: 15px; padding-bottom: 15px;">
                                     MENSAJE POR WHATSAPP
@@ -171,7 +478,7 @@
 
                         </div>
                         <div class="monaco-footer__legal">
-                            <p>© 2026 SPONSOR DAY - FG. TODOS LOS DERECHOS RESERVADOS.</p>
+                            <p>© 2026 SPONSOR DAY - FG. TODOS LOS DERECHOS RESERVADOS.<br>Design by AM Media</p>
                         </div>
                     </div>
                 </div>
