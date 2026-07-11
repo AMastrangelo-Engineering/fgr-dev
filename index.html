@@ -1,3 +1,4 @@
+<!-- V1.1.1 -->
 <!doctype html>
 <html lang="es-AR">
 <head>
@@ -14,29 +15,36 @@
 
     <!-- ESTILOS PERSONALIZADOS PARA LAS NUEVAS SECCIONES Y ADAPTABILIDAD -->
     <style>
-        /* Corrección para que el título baje a 2 renglones en smartphones */
+        /* Corrección para que el título baje a renglones separados en smartphones */
         .monaco-about__title {
             white-space: normal !important;
             word-wrap: break-word;
         }
 
+        /* Contenedor ancho completo para separar la grilla del título alineado a la izquierda */
+        .section-content-full {
+            width: 100%;
+            margin-top: 3rem;
+        }
+
         /* Estilos para Sección: Cómo Funciona */
         .steps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.5rem;
-            margin-top: 2.5rem;
             margin-bottom: 3.5rem;
+        }
+        /* Fila única en computadora (4 columnas) */
+        @media (min-width: 1024px) {
+            .steps-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
         .step-card {
             background: rgba(255, 255, 255, 0.05);
             padding: 1.5rem;
             border: 2px solid var(--color-monaco-dark);
             border-radius: 8px;
-            transition: transform 0.2s ease;
-        }
-        .step-card:hover {
-            transform: translateY(-5px);
         }
         .step-number {
             font-family: "Mav Field Gothic Compact", var(--font-display);
@@ -55,25 +63,31 @@
         }
 
         /* Estilos para Circuitos y Cronograma */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+        .info-section {
+            display: flex;
+            flex-direction: column;
             gap: 3rem;
         }
-        @media (min-width: 768px) {
-            .info-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+        
         .circuitos-list {
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        /* Fila única en computadora */
+        @media (min-width: 1024px) {
+            .circuitos-list {
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+            }
         }
         .circuitos-list li {
             position: relative;
             padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
             font-weight: 600;
         }
         .circuitos-list li::before {
@@ -83,12 +97,34 @@
             top: 0;
         }
         
+        .cronograma-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        /* Fila única en computadora */
+        @media (min-width: 1024px) {
+            .cronograma-list {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+        }
+        
         .cronograma-item {
             display: flex;
             gap: 1.5rem;
-            margin-bottom: 1.5rem;
             align-items: flex-start;
         }
+        /* En PC el horario va arriba y el texto abajo para optimizar espacio */
+        @media (min-width: 1024px) {
+            .cronograma-item {
+                flex-direction: column;
+                gap: 0.5rem;
+                flex: 1;
+            }
+        }
+        
         .cronograma-time {
             font-family: "Mav Field Gothic Compact", var(--font-display);
             font-size: 1.8rem;
@@ -114,7 +150,6 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            margin-top: 2.5rem;
         }
         .faq-item {
             border-bottom: 2px solid rgba(33, 15, 0, 0.2);
@@ -253,7 +288,6 @@
                     <div class="monaco-about__text">
                         <h2 class="monaco-about__title">
                             <span class="monaco-about__title-light">ESTO ES EL</span><br>
-                            <!-- La clase sm:hidden rompe la palabra solo en móviles -->
                             <span class="monaco-about__title-bold">SPONSOR<br class="sm:hidden"> DAY</span>
                         </h2>
                         <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
@@ -285,14 +319,18 @@
                 <span class="monaco-corner monaco-corner--bl" aria-hidden="true"></span>
                 <span class="monaco-corner monaco-corner--br" aria-hidden="true"></span>
                 
-                <div class="monaco-about__inner" style="max-width: 1100px;">
-                    <div class="monaco-about__text" style="max-width: 100%;">
+                <div class="monaco-about__inner">
+                    <!-- Título respetando la columna izquierda -->
+                    <div class="monaco-about__text">
                         <h2 class="monaco-about__title">
-                            <span class="monaco-about__title-bold">CÓMO FUNCIONA</span>
+                            <span class="monaco-about__title-bold">CÓMO<br class="sm:hidden"> FUNCIONA</span>
                         </h2>
                         <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
-                        
-                        <!-- Pasos -->
+                    </div>
+                    
+                    <!-- Contenido expansivo (Ocupa todo el ancho disponible abajo) -->
+                    <div class="section-content-full">
+                        <!-- Pasos Horizontal -->
                         <div class="steps-grid">
                             <div class="step-card">
                                 <div class="step-number">01</div>
@@ -324,8 +362,8 @@
                             </div>
                         </div>
 
-                        <!-- Circuitos y Cronograma -->
-                        <div class="info-grid">
+                        <!-- Circuitos y Cronograma Horizontal -->
+                        <div class="info-section">
                             <div>
                                 <p class="monaco-about__body-title" style="font-size: 1.5rem; margin-bottom: 1rem;">CIRCUITOS</p>
                                 <div class="monaco-about__body">
@@ -353,7 +391,7 @@
                                         <div class="cronograma-time">10:30</div>
                                         <div class="cronograma-desc">
                                             <h4>Charla de Orientación</h4>
-                                            <p>Seguridad, técnica y reconocimiento de pista</p>
+                                            <p>Seguridad, técnica y pista</p>
                                         </div>
                                     </div>
                                     <div class="cronograma-item">
@@ -367,7 +405,7 @@
                                         <div class="cronograma-time">12:15</div>
                                         <div class="cronograma-desc">
                                             <h4>Segunda Sesión</h4>
-                                            <p>Más vueltas, más velocidad, mejor performance</p>
+                                            <p>Más vueltas, velocidad, mejor performance</p>
                                         </div>
                                     </div>
                                     <div class="cronograma-item">
@@ -380,14 +418,13 @@
                                     <div class="cronograma-item">
                                         <div class="cronograma-time">15:30</div>
                                         <div class="cronograma-desc">
-                                            <h4>🏆 Qualy — Tiempos y Premios</h4>
-                                            <p>Vueltas cronometradas · Competencia por merchandising oficial</p>
+                                            <h4>🏆 Qualy y Premios</h4>
+                                            <p>Vueltas por tiempos · Merchandising oficial</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <img class="monaco-about__bottombar" src="./assets/images/bottom-bar.png" alt="" aria-hidden="true">
@@ -399,14 +436,18 @@
                 <span class="monaco-corner monaco-corner--tr" aria-hidden="true"></span>
                 <span class="monaco-corner monaco-corner--bl" aria-hidden="true"></span>
                 <span class="monaco-corner monaco-corner--br" aria-hidden="true"></span>
-                <div class="monaco-about__inner" style="max-width: 800px;">
-                    <div class="monaco-about__text" style="max-width: 100%;">
+                <div class="monaco-about__inner">
+                    <!-- Título respetando la columna izquierda -->
+                    <div class="monaco-about__text">
                         <h2 class="monaco-about__title">
                             <span class="monaco-about__title-bold">PREGUNTAS<br class="sm:hidden"> FRECUENTES</span>
                         </h2>
                         <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
-                        
-                        <div class="faq-container monaco-about__body">
+                    </div>
+                    
+                    <!-- Contenido expansivo -->
+                    <div class="section-content-full">
+                        <div class="faq-container monaco-about__body" style="max-width: 900px;">
                             <details class="faq-item">
                                 <summary>¿Necesito experiencia previa en karting?</summary>
                                 <p>No es necesario. La jornada incluye una charla de orientación y seguridad, reconocimiento de pista y coaching personalizado. Tanto principiantes como pilotos con experiencia pueden disfrutar la experiencia al máximo.</p>
