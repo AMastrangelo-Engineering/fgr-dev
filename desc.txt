@@ -1,4 +1,4 @@
-/
+/ v1
 ├── index.html
 ├── assets/
 │   ├── css/
@@ -43,3 +43,28 @@
 │       ├── footer-bg.jpg
 │       ├── footer-box.png
 │       └── logo-footer.png
+
+Sección Principal (El inicio / Hero)
+- hero-bg.jpg: Es la imagen de fondo de la primera pantalla (en la página original es el fondo amarillo texturizado).
+- sponsor-day-mask.png: Es la silueta de la palabra gigante (originalmente "CLUTCH"). Esta imagen se usa como máscara para que el video se reproduzca "adentro" de las letras. Tiene que tener el fondo transparente y el texto "Sponsor Day" en color negro o sólido.
+- logo-top.png: Es el logo chiquito que aparece bien arriba en el centro (originalmente dice "Maverick Games").
+- btn-trailer.png: Es la imagen del botón que dice "PLAY TRAILER".
+- btn-wishlist.png: Es la imagen del botón gigante que dice "WISHLIST TODAY".
+- icon-ps5.png a icon-epic.png: Son los iconitos de las plataformas (PlayStation, Xbox, Steam, Epic) que están debajo del botón de Wishlist. Si no vas a usar estas plataformas, podés reemplazarlas por los logos de marcas de karting o sponsors que te acompañen.
+- icon-ig.png a icon-fb.png: Son los íconos de las redes sociales.
+badge-letter.png: Es el "sello" o medalla circular que está abajo a la izquierda (originalmente "LETTER FROM THE DEVELOPERS"). Si le haces clic, abre la carta emergente.
+box-made-in.png: Es el sello rectangular que está abajo a la derecha (originalmente dice "MADE IN MONACO").
+bottom-bar.png: Es la barra gráfica horizontal que sirve de transición o borde inferior para separar esta sección de la que sigue.
+
+Sección Central (Información / "Viví el misil")
+- about-bg.jpg: Es el fondo de la segunda sección donde está el texto largo (originalmente es un fondo gris claro/blanco texturizado).
+- underline-about.png: Es la línea o subrayado con estilo de trazo que está justo debajo del título "ESTO ES EL SPONSOR DAY".
+- polaroid-1.jpg a polaroid-7.jpg: Son las 7 fotos estilo "polaroid" que están apiladas a la derecha y se mueven a diferentes velocidades al scrollear (efecto parallax).
+- logo-submark.png: Es un logo circular pequeño que aparece abajo a la izquierda en esta sección (como una marca de agua).
+
+Sección Inferior (Footer / Contacto)
+- footer-bg.jpg: Es el fondo de la última sección de la página (originalmente es de color naranja).
+- footer-box.png: Es el sello rectangular que aparece arriba del logo gigante en el footer (originalmente un "Made in Monaco" en color amarillo).
+- logo-footer.png: Es el logo o texto gigante que aparece a la izquierda en el pie de página (originalmente es la palabra "CLUTCH" sólida, sin video adentro).
+
+De esta manera, cuando vayas a reemplazar los archivos en GitHub, solo tenés que asegurarte de que tus imágenes propias tengan exactamente estos mismos nombres y subirlas en la carpeta images/. ¡Así la página las va a tomar automáticamente!
