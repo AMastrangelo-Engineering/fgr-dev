@@ -1,4 +1,4 @@
-/*! V1.2.1 */
+/*! V1.2.2 */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -1388,21 +1388,17 @@ form.monaco-footer-newsletter.is-submitted > div:not(.monaco-footer-message), fo
 }
 @media (max-width: 480px) {
     .monaco-about__title-bold {
-        font-size: clamp(28px, 10vw, 84px); /* Reducido para que entre "FRECUENTES" */
+        font-size: clamp(28px, 10vw, 84px);
     }
- 
-
-										 
-						   
-						  
-																		  
-	 
-															
-																	
-	 
 }
 
-/* Fix Video Portada */
+/* Configuración Global de la Máscara y Video (Desktop y Móvil) */
+.monaco-hero__clutch {
+    --clutch-mask: url('../images/sponsor-day-mask-2.png') !important;
+}
+.monaco-hero__clutch-sizer, .monaco-hero__clutch-cover {
+    content: url('../images/sponsor-day-mask-2.png') !important;
+}
 .monaco-hero__clutch-video {
     pointer-events: none !important;
 }
