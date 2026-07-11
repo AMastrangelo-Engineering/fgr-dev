@@ -1,4 +1,4 @@
-<!-- V1.1.2 -->
+<!-- V1.1.3 -->
 <!doctype html>
 <html lang="es-AR">
 <head>
@@ -173,13 +173,31 @@
             content: '+';
             font-size: 1.5rem;
             font-family: monospace;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .faq-item[open] summary::after {
             transform: rotate(45deg);
         }
-        .faq-item p {
+        
+        /* Animación fluida para el contenido del FAQ */
+        .faq-content {
             padding-bottom: 1.25rem;
+        }
+        .faq-item[open] .faq-content {
+            animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform-origin: top;
+        }
+        @keyframes slideDownFade {
+            0% { 
+                opacity: 0; 
+                transform: translateY(-10px);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        .faq-content p {
             margin: 0;
             font-size: 0.95rem;
             line-height: 1.6;
@@ -209,31 +227,13 @@
                             </video>
                             <img class="monaco-hero__clutch-cover" src="./assets/images/sponsor-day-mask.png" alt="" aria-hidden="true">
                         </div>
-
-                        <a href="https://youtu.be/TU_VIDEO_AQUI" class="monaco-hero__btn js-trailer-trigger" aria-label="Play Trailer">
-                            <img src="./assets/images/btn-trailer.png" alt="Play Trailer">
-                        </a>
                     </div>
                     <div class="monaco-hero__bottom">
-                        <div class="monaco-hero__wishlist">
-                            <img src="./assets/images/btn-wishlist.png" alt="Wishlist Today">
-                        </div>
-                        
+                        <!-- REDES SOCIALES (Solo WhatsApp) -->
                         <nav class="monaco-hero__social" aria-label="Social media">
-                            <a href="#" class="monaco-hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                                <img src="./assets/images/icon-ig.png" alt="Instagram">
-                            </a>
-                            <a href="#" class="monaco-hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                                <img src="./assets/images/icon-yt.png" alt="YouTube">
-                            </a>
-                            <a href="#" class="monaco-hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                                <img src="./assets/images/icon-tk.png" alt="TikTok">
-                            </a>
-                            <a href="#" class="monaco-hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="X">
-                                <img src="./assets/images/icon-x.png" alt="X">
-                            </a>
-                            <a href="#" class="monaco-hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                <img src="./assets/images/icon-fb.png" alt="Facebook">
+                            <a href="https://wa.me/1234567890" class="monaco-hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                                <!-- Asegurate de subir un ícono de WhatsApp con este nombre -->
+                                <img src="./assets/images/icon-wa.png" alt="WhatsApp">
                             </a>
                         </nav>
                         
@@ -247,18 +247,6 @@
                 </div>
                 <img class="monaco-hero__bottombar" src="./assets/images/bottom-bar.png" alt="" aria-hidden="true">
             </section>
-
-            <!-- TRAILER MODAL -->
-            <div class="monaco-trailer" hidden>
-                <button type="button" class="monaco-trailer__close" aria-label="Close">&times;</button>
-                <div class="monaco-trailer__panel">
-                    <span class="monaco-trailer__corner monaco-trailer__corner--tl" aria-hidden="true"></span>
-                    <span class="monaco-trailer__corner monaco-trailer__corner--tr" aria-hidden="true"></span>
-                    <span class="monaco-trailer__corner monaco-trailer__corner--bl" aria-hidden="true"></span>
-                    <span class="monaco-trailer__corner monaco-trailer__corner--br" aria-hidden="true"></span>
-                    <div class="monaco-trailer__video"></div>
-                </div>
-            </div>
 
             <!-- LETTER MODAL -->
             <div class="monaco-letter" hidden role="dialog" aria-modal="true" aria-label="Letter from the team">
@@ -288,7 +276,7 @@
                     <div class="monaco-about__text">
                         <h2 class="monaco-about__title">
                             <span class="monaco-about__title-light">ESTO ES EL</span><br>
-                            <span class="monaco-about__title-bold">SPONSOR<br class="sm:hidden"> DAY</span>
+                            <span class="monaco-about__title-bold">SPONSOR<br>DAY</span>
                         </h2>
                         <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
                         <p class="monaco-about__body-title">VIVÍ EL MISIL</p>
@@ -298,15 +286,15 @@
                         </div>
                     </div>
                 </div>
-                <!-- Efecto Parallax Fotos -->
+                <!-- Efecto Parallax Fotos (Con velocidades drásticamente reducidas) -->
                 <div class="monaco-about__photos">
-                    <img class="monaco-about__photo monaco-about__photo--1" src="./assets/images/polaroid-1.png" alt="" loading="lazy" data-parallax="0.07">
-                    <img class="monaco-about__photo monaco-about__photo--2" src="./assets/images/polaroid-2.png" alt="" loading="lazy" data-parallax="0.4">
-                    <img class="monaco-about__photo monaco-about__photo--3" src="./assets/images/polaroid-3.png" alt="" loading="lazy" data-parallax="0.25">
-                    <img class="monaco-about__photo monaco-about__photo--4" src="./assets/images/polaroid-4.png" alt="" loading="lazy" data-parallax="0.14">
-                    <img class="monaco-about__photo monaco-about__photo--5" src="./assets/images/polaroid-5.png" alt="" loading="lazy" data-parallax="0.19">
-                    <img class="monaco-about__photo monaco-about__photo--6" src="./assets/images/polaroid-6.png" alt="" loading="lazy" data-parallax="0.26">
-                    <img class="monaco-about__photo monaco-about__photo--7" src="./assets/images/polaroid-7.png" alt="" loading="lazy" data-parallax="0.07">
+                    <img class="monaco-about__photo monaco-about__photo--1" src="./assets/images/polaroid-1.png" alt="" loading="lazy" data-parallax="0.02">
+                    <img class="monaco-about__photo monaco-about__photo--2" src="./assets/images/polaroid-2.png" alt="" loading="lazy" data-parallax="0.10">
+                    <img class="monaco-about__photo monaco-about__photo--3" src="./assets/images/polaroid-3.png" alt="" loading="lazy" data-parallax="0.06">
+                    <img class="monaco-about__photo monaco-about__photo--4" src="./assets/images/polaroid-4.png" alt="" loading="lazy" data-parallax="0.03">
+                    <img class="monaco-about__photo monaco-about__photo--5" src="./assets/images/polaroid-5.png" alt="" loading="lazy" data-parallax="0.05">
+                    <img class="monaco-about__photo monaco-about__photo--6" src="./assets/images/polaroid-6.png" alt="" loading="lazy" data-parallax="0.07">
+                    <img class="monaco-about__photo monaco-about__photo--7" src="./assets/images/polaroid-7.png" alt="" loading="lazy" data-parallax="0.02">
                 </div>
                 <img class="monaco-about__submark" src="./assets/images/logo-submark.png" alt="" aria-hidden="true">
                 <img class="monaco-about__bottombar" src="./assets/images/bottom-bar.png" alt="" aria-hidden="true">
@@ -323,7 +311,7 @@
                     <!-- Título respetando la columna izquierda -->
                     <div class="monaco-about__text">
                         <h2 class="monaco-about__title">
-                            <span class="monaco-about__title-bold">CÓMO<br class="sm:hidden"> FUNCIONA</span>
+                            <span class="monaco-about__title-bold">CÓMO<br>FUNCIONA</span>
                         </h2>
                         <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
                     </div>
@@ -440,47 +428,61 @@
                     <!-- Título respetando la columna izquierda -->
                     <div class="monaco-about__text">
                         <h2 class="monaco-about__title">
-                            <span class="monaco-about__title-bold">PREGUNTAS<br class="sm:hidden"> FRECUENTES</span>
+                            <span class="monaco-about__title-bold">PREGUNTAS<br>FRECUENTES</span>
                         </h2>
                         <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
                     </div>
                     
-                    <!-- Contenido expansivo -->
+                    <!-- Contenido expansivo AL ANCHO DE PÁGINA (max-width: 100%) -->
                     <div class="section-content-full">
-                        <div class="faq-container monaco-about__body" style="max-width: 900px;">
+                        <div class="faq-container monaco-about__body" style="max-width: 100%;">
                             <details class="faq-item">
                                 <summary>¿Necesito experiencia previa en karting?</summary>
-                                <p>No es necesario. La jornada incluye una charla de orientación y seguridad, reconocimiento de pista y coaching personalizado. Tanto principiantes como pilotos con experiencia pueden disfrutar la experiencia al máximo.</p>
+                                <div class="faq-content">
+                                    <p>No es necesario. La jornada incluye una charla de orientación y seguridad, reconocimiento de pista y coaching personalizado. Tanto principiantes como pilotos con experiencia pueden disfrutar la experiencia al máximo.</p>
+                                </div>
                             </details>
                             
                             <details class="faq-item">
                                 <summary>¿Qué pasa si llueve el día del evento?</summary>
-                                <p>Si el evento no puede realizarse por condiciones climáticas que comprometan la seguridad, se reprograma automáticamente para una nueva fecha. La seña pagada queda válida para la nueva edición.</p>
+                                <div class="faq-content">
+                                    <p>Si el evento no puede realizarse por condiciones climáticas que comprometan la seguridad, se reprograma automáticamente para una nueva fecha. La seña pagada queda válida para la nueva edición.</p>
+                                </div>
                             </details>
                             
                             <details class="faq-item">
                                 <summary>¿Cómo se reserva un lugar?</summary>
-                                <p>Escribinos directamente por WhatsApp. Una vez confirmada disponibilidad, tu lugar se reserva con el pago de una seña. El resto se abona el día del evento.</p>
+                                <div class="faq-content">
+                                    <p>Escribinos directamente por WhatsApp. Una vez confirmada disponibilidad, tu lugar se reserva con el pago de una seña. El resto se abona el día del evento.</p>
+                                </div>
                             </details>
                             
                             <details class="faq-item">
                                 <summary>¿Se puede cancelar la reserva?</summary>
-                                <p>La seña de reserva no es reembolsable en caso de cancelación por parte del participante. Sin embargo, si no podés asistir a una fecha reprogramada por condiciones climáticas, podés solicitar el reintegro dentro de la semana siguiente.</p>
+                                <div class="faq-content">
+                                    <p>La seña de reserva no es reembolsable en caso de cancelación por parte del participante. Sin embargo, si no podés asistir a una fecha reprogramada por condiciones climáticas, podés solicitar el reintegro dentro de la semana siguiente.</p>
+                                </div>
                             </details>
 
                             <details class="faq-item">
                                 <summary>¿El evento es solo para adultos?</summary>
-                                <p>El evento está diseñado para mayores de edad o menores con autorización y acompañamiento de un adulto responsable. Consultanos para evaluar cada caso particular.</p>
+                                <div class="faq-content">
+                                    <p>El evento está diseñado para mayores de edad o menores con autorización y acompañamiento de un adulto responsable. Consultanos para evaluar cada caso particular.</p>
+                                </div>
                             </details>
 
                             <details class="faq-item">
                                 <summary>¿Puedo llevar acompañantes que no manejen?</summary>
-                                <p>Sí, pueden asistir acompañantes como espectadores. La experiencia de ver los kartings en acción en un circuito profesional ya es espectacular. Consultanos para coordinar los detalles.</p>
+                                <div class="faq-content">
+                                    <p>Sí, pueden asistir acompañantes como espectadores. La experiencia de ver los kartings en acción en un circuito profesional ya es espectacular. Consultanos para coordinar los detalles.</p>
+                                </div>
                             </details>
 
                             <details class="faq-item">
                                 <summary>El que rompe, paga — ¿cómo funciona?</summary>
-                                <p>Al participar del Sponsor Day, cada piloto asume plena responsabilidad por los daños que cause al karting durante la experiencia. En caso de accidente o mal uso del vehículo que resulte en la rotura del mismo, el participante deberá hacerse cargo del costo de reparación, sin excepción y sin importar las circunstancias del incidente. Esta condición es parte esencial de la experiencia y es aceptada al momento de confirmar la reserva.</p>
+                                <div class="faq-content">
+                                    <p>Al participar del Sponsor Day, cada piloto asume plena responsabilidad por los daños que cause al karting durante la experiencia. En caso de accidente o mal uso del vehículo que resulte en la rotura del mismo, el participante deberá hacerse cargo del costo de reparación, sin excepción y sin importar las circunstancias del incidente. Esta condición es parte esencial de la experiencia y es aceptada al momento de confirmar la reserva.</p>
+                                </div>
                             </details>
                         </div>
                     </div>
