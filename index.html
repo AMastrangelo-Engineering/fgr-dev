@@ -1,4 +1,4 @@
-<!-- V1.1.6 -->
+<!-- V1.1.8 -->
 <!doctype html>
 <html lang="es-AR">
 <head>
@@ -12,194 +12,6 @@
     
     <!-- Favicon -->
     <link rel="icon" href="./assets/images/logo-submark.png" sizes="32x32"/>
-
-    <!-- ESTILOS PERSONALIZADOS PARA LAS NUEVAS SECCIONES Y ADAPTABILIDAD -->
-    <style>
-        /* Corrección para que el título baje a renglones separados en smartphones y NO corte la palabra */
-        .monaco-about__title {
-            white-space: normal !important;
-            word-break: normal !important;
-            hyphens: none !important;
-        }
-
-        /* En caso de pantallas muy chicas, reducimos el font-size para que las palabras largas entren completas */
-        @media (max-width: 480px) {
-            .monaco-about__title-bold {
-                font-size: clamp(38px, 12vw, 84px);
-            }
-        }
-
-        /* Contenedor ancho completo para separar la grilla del título alineado a la izquierda */
-        .section-content-full {
-            width: 100%;
-            margin-top: 3rem;
-        }
-
-        /* Estilos para Sección: Cómo Funciona */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-bottom: 3.5rem;
-        }
-        /* Fila única en computadora (4 columnas) */
-        @media (min-width: 1024px) {
-            .steps-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        .step-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border: 2px solid var(--color-monaco-dark);
-            border-radius: 8px;
-        }
-        .step-number {
-            font-family: "Mav Field Gothic Compact", var(--font-display);
-            font-size: 3.5rem;
-            line-height: 1;
-            color: var(--color-monaco-dark);
-            margin-bottom: 0.5rem;
-            opacity: 0.8;
-        }
-        .step-title {
-            font-weight: 900;
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            color: var(--color-monaco-dark);
-        }
-
-        /* Estilos para Circuitos y Cronograma */
-        .info-section {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-        
-        .circuitos-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        /* Fila única en computadora */
-        @media (min-width: 1024px) {
-            .circuitos-list {
-                flex-direction: row;
-                justify-content: space-between;
-                flex-wrap: nowrap;
-            }
-        }
-        .circuitos-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            font-weight: 600;
-        }
-        
-        .cronograma-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        /* Fila única en computadora */
-        @media (min-width: 1024px) {
-            .cronograma-list {
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 1rem;
-            }
-        }
-        
-        .cronograma-item {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-        }
-        /* En PC el horario va arriba y el texto abajo para optimizar espacio */
-        @media (min-width: 1024px) {
-            .cronograma-item {
-                flex-direction: column;
-                gap: 0.5rem;
-                flex: 1;
-            }
-        }
-        
-        .cronograma-time {
-            font-family: "Mav Field Gothic Compact", var(--font-display);
-            font-size: 1.8rem;
-            color: var(--color-monaco-dark);
-            min-width: 75px;
-            border-bottom: 3px solid var(--color-monaco-dark);
-            line-height: 1.2;
-        }
-        .cronograma-desc h4 {
-            font-weight: 800;
-            text-transform: uppercase;
-            margin: 0 0 0.25rem 0;
-            font-size: 1.05rem;
-        }
-        .cronograma-desc p {
-            margin: 0;
-            font-size: 0.95rem;
-            opacity: 0.85;
-        }
-
-        /* Estilos para FAQ / Preguntas Frecuentes */
-        .faq-container {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .faq-item {
-            border-bottom: 2px solid rgba(33, 15, 0, 0.2);
-        }
-        .faq-item summary {
-            font-family: var(--font-body);
-            font-weight: 800;
-            font-size: 1.1rem;
-            cursor: pointer;
-            padding: 1.25rem 0;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--color-monaco-dark);
-        }
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-        .faq-item summary::after {
-            content: '+';
-            font-size: 1.5rem;
-            font-family: monospace;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .faq-item[open] summary::after {
-            transform: rotate(45deg);
-        }
-        
-        /* Animación fluida para el contenido del FAQ (Controlada por JS) */
-        .faq-content {
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1), padding-bottom 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .faq-content p {
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Ajuste de tamaño del Logo del Footer para igualarlo al Logo Top */
-        .monaco-footer__logo {
-            height: clamp(48px, 6vw, 88px) !important;
-            width: auto !important;
-            max-width: 100%;
-            object-fit: contain;
-        }
-    </style>
 </head>
 <body class="home wp-theme-monaco">
 
@@ -219,14 +31,13 @@
                         
                         <div class="monaco-hero__clutch monaco-hero__clutch--has-video" style="--clutch-mask: url('./assets/images/sponsor-day-mask.png')">
                             <img class="monaco-hero__clutch-sizer" src="./assets/images/sponsor-day-mask.png" alt="SPONSOR DAY">
-                            <video class="monaco-hero__clutch-video" autoplay muted loop playsinline aria-hidden="true">
+                            <video class="monaco-hero__clutch-video" autoplay muted loop playsinline disablePictureInPicture aria-hidden="true">
                                 <source src="./assets/videos/hero-video.mp4" type="video/mp4">
                             </video>
                             <img class="monaco-hero__clutch-cover" src="./assets/images/sponsor-day-mask.png" alt="" aria-hidden="true">
                         </div>
                     </div>
                     <div class="monaco-hero__bottom">
-                        <!-- REDES SOCIALES (Solo WhatsApp) -->
                         <nav class="monaco-hero__social" aria-label="Social media">
                             <a href="https://wa.me/1234567890" class="monaco-hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                                 <img src="./assets/images/icon-wa.png" alt="WhatsApp">
@@ -377,7 +188,7 @@
                                     <div class="cronograma-item">
                                         <div class="cronograma-time">11:00</div>
                                         <div class="cronograma-desc">
-                                            <h4>Salida a Pista</h4>
+                                            <h4>🏁 Salida a Pista</h4>
                                             <p>Vueltas cronometradas con coaching en vivo</p>
                                         </div>
                                     </div>
@@ -398,7 +209,7 @@
                                     <div class="cronograma-item">
                                         <div class="cronograma-time">15:30</div>
                                         <div class="cronograma-desc">
-                                            <h4>Qualy y Premios</h4>
+                                            <h4>🏆 Qualy y Premios</h4>
                                             <p>Vueltas por tiempos · Merchandising oficial</p>
                                         </div>
                                     </div>
@@ -502,7 +313,6 @@
                                 Escribinos para asegurar tu lugar en el próximo <span class="monaco-footer__brandword">SPONSOR DAY</span>
                             </p>
                             
-                            <!-- ENLACE A WHATSAPP AQUÍ -->
                             <div class="monaco-footer__field">
                                 <a href="https://wa.me/5491161221810" target="_blank" rel="noopener noreferrer" class="monaco-footer__submit" style="display: flex; justify-content: center; align-items: center; width: 100%; text-decoration: none; padding-top: 15px; padding-bottom: 15px;">
                                     MENSAJE POR WHATSAPP
@@ -523,10 +333,9 @@
     <script src="./assets/js/hero.js"></script>
     <script src="./assets/js/parallax.js"></script>
     
-    <!-- Script para la animación fluida de las FAQ (Emil Kowalski UI/UX) -->
+    <!-- Script para la animación fluida de las FAQ -->
     <script>
         document.querySelectorAll('.faq-item summary').forEach(summary => {
-            // Inicializar el estado de los contenedores cerrados
             const content = summary.nextElementSibling;
             content.style.maxHeight = '0px';
             content.style.opacity = '0';
@@ -537,12 +346,10 @@
                 const details = this.parentElement;
                 
                 if (details.open) {
-                    // Cerrando: Establecer la altura actual y transicionar a 0
                     content.style.maxHeight = content.scrollHeight + 'px';
                     content.style.opacity = '1';
                     content.style.paddingBottom = '1.25rem';
                     
-                    // Forzar reflow para que el navegador registre el estado inicial de la transición
                     void content.offsetWidth;
                     
                     content.style.maxHeight = '0px';
@@ -551,23 +358,19 @@
                     
                     setTimeout(() => {
                         details.open = false;
-                    }, 300); // 300ms es la duración de la transición en el CSS
+                    }, 300);
                 } else {
-                    // Abriendo: Mostrar instantaneamente pero con max-height 0, y transicionar al contenido real
                     details.open = true;
                     content.style.maxHeight = '0px';
                     content.style.opacity = '0';
                     content.style.paddingBottom = '0px';
                     
-                    // Forzar reflow
                     void content.offsetWidth;
                     
-                    // Sumamos 20px extra para compensar el padding-bottom (1.25rem = 20px)
                     content.style.maxHeight = (content.scrollHeight + 20) + 'px';
                     content.style.opacity = '1';
                     content.style.paddingBottom = '1.25rem';
                     
-                    // Limpiar el max-height fijo después de la transición por si la pantalla cambia de tamaño
                     setTimeout(() => {
                         if(details.open) content.style.maxHeight = 'none';
                     }, 300);
