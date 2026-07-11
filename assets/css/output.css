@@ -1,4 +1,4 @@
-/*! V1.1.0 */
+/*! V1.2.0 */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -1072,7 +1072,7 @@ body.monaco-letter-open {
     max-width: 100%;
   }
   .monaco-about__inner {
-    padding-bottom: 0;
+    padding-bottom: 120px;
   }
   .monaco-about__photos {
     position: relative;
@@ -1388,7 +1388,17 @@ form.monaco-footer-newsletter.is-submitted > div:not(.monaco-footer-message), fo
 }
 @media (max-width: 480px) {
     .monaco-about__title-bold {
-        font-size: clamp(38px, 12vw, 84px);
+        font-size: clamp(28px, 10vw, 84px); /* Reducido para que entre "FRECUENTES" */
+    }
+}
+
+/* Fix Máscara Dinámica en Celulares */
+@media (max-width: 768px) {
+    .monaco-hero__clutch {
+        --clutch-mask: url('../images/sponsor-day-mask-2.png') !important;
+    }
+    .monaco-hero__clutch-sizer, .monaco-hero__clutch-cover {
+        content: url('../images/sponsor-day-mask-2.png') !important;
     }
 }
 
