@@ -52,9 +52,9 @@ Sección Principal (El inicio / Hero)
 - btn-wishlist.png: Es la imagen del botón gigante que dice "WISHLIST TODAY".
 - icon-ps5.png a icon-epic.png: Son los iconitos de las plataformas (PlayStation, Xbox, Steam, Epic) que están debajo del botón de Wishlist. Si no vas a usar estas plataformas, podés reemplazarlas por los logos de marcas de karting o sponsors que te acompañen.
 - icon-ig.png a icon-fb.png: Son los íconos de las redes sociales.
-badge-letter.png: Es el "sello" o medalla circular que está abajo a la izquierda (originalmente "LETTER FROM THE DEVELOPERS"). Si le haces clic, abre la carta emergente.
-box-made-in.png: Es el sello rectangular que está abajo a la derecha (originalmente dice "MADE IN MONACO").
-bottom-bar.png: Es la barra gráfica horizontal que sirve de transición o borde inferior para separar esta sección de la que sigue.
+- badge-letter.png: Es el "sello" o medalla circular que está abajo a la izquierda (originalmente "LETTER FROM THE DEVELOPERS"). Si le haces clic, abre la carta emergente.
+- box-made-in.png: Es el sello rectangular que está abajo a la derecha (originalmente dice "MADE IN MONACO").
+- bottom-bar.png: Es la barra gráfica horizontal que sirve de transición o borde inferior para separar esta sección de la que sigue.
 
 Sección Central (Información / "Viví el misil")
 - about-bg.jpg: Es el fondo de la segunda sección donde está el texto largo (originalmente es un fondo gris claro/blanco texturizado).
