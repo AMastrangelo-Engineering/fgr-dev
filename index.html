@@ -1,4 +1,4 @@
-<!-- V1.1.4 -->
+<!-- V1.1.5 -->
 <!doctype html>
 <html lang="es-AR">
 <head>
@@ -15,10 +15,18 @@
 
     <!-- ESTILOS PERSONALIZADOS PARA LAS NUEVAS SECCIONES Y ADAPTABILIDAD -->
     <style>
-        /* Corrección para que el título baje a renglones separados en smartphones */
+        /* Corrección para que el título baje a renglones separados en smartphones y NO corte la palabra */
         .monaco-about__title {
             white-space: normal !important;
-            word-wrap: break-word;
+            word-break: normal !important;
+            hyphens: none !important;
+        }
+
+        /* En caso de pantallas muy chicas, reducimos el font-size para que las palabras largas entren completas */
+        @media (max-width: 480px) {
+            .monaco-about__title-bold {
+                font-size: clamp(38px, 12vw, 84px);
+            }
         }
 
         /* Contenedor ancho completo para separar la grilla del título alineado a la izquierda */
@@ -179,28 +187,23 @@
             transform: rotate(45deg);
         }
         
-        /* Animación fluida para el contenido del FAQ */
+        /* Animación fluida para el contenido del FAQ (Controlada por JS) */
         .faq-content {
-            padding-bottom: 1.25rem;
-        }
-        .faq-item[open] .faq-content {
-            animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            transform-origin: top;
-        }
-        @keyframes slideDownFade {
-            0% { 
-                opacity: 0; 
-                transform: translateY(-10px);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0);
-            }
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1), padding-bottom 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .faq-content p {
             margin: 0;
             font-size: 0.95rem;
             line-height: 1.6;
+        }
+
+        /* Ajuste de tamaño del Logo del Footer para igualarlo al Logo Top */
+        .monaco-footer__logo {
+            height: clamp(48px, 6vw, 88px) !important;
+            width: auto !important;
+            max-width: 100%;
+            object-fit: contain;
         }
     </style>
 </head>
@@ -232,7 +235,6 @@
                         <!-- REDES SOCIALES (Solo WhatsApp) -->
                         <nav class="monaco-hero__social" aria-label="Social media">
                             <a href="https://wa.me/1234567890" class="monaco-hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                                <!-- Asegurate de subir un ícono de WhatsApp con este nombre -->
                                 <img src="./assets/images/icon-wa.png" alt="WhatsApp">
                             </a>
                         </nav>
@@ -286,7 +288,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Efecto Parallax Fotos (Con velocidades drásticamente reducidas) -->
+                <!-- Efecto Parallax Fotos -->
                 <div class="monaco-about__photos">
                     <img class="monaco-about__photo monaco-about__photo--1" src="./assets/images/polaroid-1.png" alt="" loading="lazy" data-parallax="0.02">
                     <img class="monaco-about__photo monaco-about__photo--2" src="./assets/images/polaroid-2.png" alt="" loading="lazy" data-parallax="0.10">
@@ -308,7 +310,6 @@
                 <span class="monaco-corner monaco-corner--br" aria-hidden="true"></span>
                 
                 <div class="monaco-about__inner">
-                    <!-- Título respetando la columna izquierda -->
                     <div class="monaco-about__text">
                         <h2 class="monaco-about__title">
                             <span class="monaco-about__title-bold">CÓMO<br>FUNCIONA</span>
@@ -316,9 +317,7 @@
                         <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
                     </div>
                     
-                    <!-- Contenido expansivo (Ocupa todo el ancho disponible abajo) -->
                     <div class="section-content-full">
-                        <!-- Pasos Horizontal -->
                         <div class="steps-grid">
                             <div class="step-card">
                                 <div class="step-number">01</div>
@@ -350,7 +349,6 @@
                             </div>
                         </div>
 
-                        <!-- Circuitos y Cronograma Horizontal -->
                         <div class="info-section">
                             <div>
                                 <p class="monaco-about__body-title" style="font-size: 1.5rem; margin-bottom: 1rem;">CIRCUITOS</p>
@@ -425,7 +423,6 @@
                 <span class="monaco-corner monaco-corner--bl" aria-hidden="true"></span>
                 <span class="monaco-corner monaco-corner--br" aria-hidden="true"></span>
                 <div class="monaco-about__inner">
-                    <!-- Título respetando la columna izquierda -->
                     <div class="monaco-about__text">
                         <h2 class="monaco-about__title">
                             <span class="monaco-about__title-bold">PREGUNTAS<br>FRECUENTES</span>
@@ -433,7 +430,6 @@
                         <img class="monaco-about__underline" src="./assets/images/underline-about.png" alt="" aria-hidden="true">
                     </div>
                     
-                    <!-- Contenido expansivo AL ANCHO DE PÁGINA (max-width: 100%) -->
                     <div class="section-content-full">
                         <div class="faq-container monaco-about__body" style="max-width: 100%;">
                             <details class="faq-item">
@@ -532,5 +528,58 @@
     <!-- SCRIPTS -->
     <script src="./assets/js/hero.js"></script>
     <script src="./assets/js/parallax.js"></script>
+    
+    <!-- Script para la animación fluida de las FAQ (Emil Kowalski UI/UX) -->
+    <script>
+        document.querySelectorAll('.faq-item summary').forEach(summary => {
+            // Inicializar el estado de los contenedores cerrados
+            const content = summary.nextElementSibling;
+            content.style.maxHeight = '0px';
+            content.style.opacity = '0';
+            content.style.paddingBottom = '0px';
+
+            summary.addEventListener('click', function(e) {
+                e.preventDefault();
+                const details = this.parentElement;
+                
+                if (details.open) {
+                    // Cerrando: Establecer la altura actual y transicionar a 0
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.opacity = '1';
+                    content.style.paddingBottom = '1.25rem';
+                    
+                    // Forzar reflow para que el navegador registre el estado inicial de la transición
+                    void content.offsetWidth;
+                    
+                    content.style.maxHeight = '0px';
+                    content.style.opacity = '0';
+                    content.style.paddingBottom = '0px';
+                    
+                    setTimeout(() => {
+                        details.open = false;
+                    }, 300); // 300ms es la duración de la transición en el CSS
+                } else {
+                    // Abriendo: Mostrar instantaneamente pero con max-height 0, y transicionar al contenido real
+                    details.open = true;
+                    content.style.maxHeight = '0px';
+                    content.style.opacity = '0';
+                    content.style.paddingBottom = '0px';
+                    
+                    // Forzar reflow
+                    void content.offsetWidth;
+                    
+                    // Sumamos 20px extra para compensar el padding-bottom (1.25rem = 20px)
+                    content.style.maxHeight = (content.scrollHeight + 20) + 'px';
+                    content.style.opacity = '1';
+                    content.style.paddingBottom = '1.25rem';
+                    
+                    // Limpiar el max-height fijo después de la transición por si la pantalla cambia de tamaño
+                    setTimeout(() => {
+                        if(details.open) content.style.maxHeight = 'none';
+                    }, 300);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
